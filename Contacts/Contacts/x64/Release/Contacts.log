@@ -1,0 +1,11 @@
+﻿  uic MainWindow.ui
+  rcc MainWindow.qrc
+  moc MainWindow.h
+   RCC: Warning: No resources in 'E:\Work\Contacts\Contacts\MainWindow.qrc'.
+  AddressBook.cpp
+  Contact.cpp
+  main.cpp
+  MainWindow.cpp
+  qrc_MainWindow.cpp
+  moc_MainWindow.cpp
+  Contacts.vcxproj -> E:\Work\Contacts\x64\Release\Contacts.exe
