@@ -1,3 +1,4 @@
+//Windows用户保存之后的文本应该使用带BOM的 UTF-8格式，否则会出现中文乱码//
 #pragma execution_character_set("utf-8")
 #include "MainWindow.h"
 #include <qfiledialog.h>
