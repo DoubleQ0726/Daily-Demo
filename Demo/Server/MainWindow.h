@@ -13,9 +13,10 @@ public:
 	MainWindow(QWidget *parent = Q_NULLPTR);
 
 public slots:
-	void NewConnectionSlot();//监听端口
-	void SClose();//断开
-	void SReadData();
+	void NewConnectionSlot();//服务器处理不同的信号
+	void SClose();//客户端与服务器断开
+	void DisConnect();//服务器主动与这个客户端断开连接
+	void SReadData();//监听端口
 	void SSendMessage();
 
 private:

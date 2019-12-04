@@ -11,6 +11,7 @@ class MainWindow : public QWidget
 
 public:
 	MainWindow(QWidget *parent = Q_NULLPTR);
+	~MainWindow();
 
 public slots:
 	void Connect();//Á¬½Ó
@@ -18,6 +19,7 @@ public slots:
 	void ReadError(QAbstractSocket::SocketError);
 	void ReadData();
 	void SendMessage();
+
 
 
 private:

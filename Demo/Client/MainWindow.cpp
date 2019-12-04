@@ -11,13 +11,18 @@ MainWindow::MainWindow(QWidget *parent)
 	//新建TCP客户端
 	client = new QTcpSocket(this);
 	client->abort();//取消原有连接
+	//收到服务器端的信号，再进行读取信息
+	connect(client, &QTcpSocket::readyRead, this, &MainWindow::ReadData);
+	connect(client, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(ReadError(QAbstractSocket::SocketError)));
 	//点击连接按钮，请求与服务器连接
 	connect(ui.pushButton_connect, &QPushButton::clicked, this, &MainWindow::Connect);
 	//点击取消按钮，请求与服务器断开
 	connect(ui.pushButton_dis, &QPushButton::clicked, this, &MainWindow::Close);
+	connect(client, &QTcpSocket::disconnected, this, [=]() {
+		ui.pushButton_connect->show();
+	});
 	//点击发送按钮，向服务器发送信息
 	connect(ui.pushButton_send, &QPushButton::clicked, this, &MainWindow::SendMessage);
-
 }
 
 void MainWindow::Connect()
@@ -26,11 +31,16 @@ void MainWindow::Connect()
 	//等待TCP连接成功
 	if (client->waitForConnected(1000))//等待一秒，连接成功返回true
 	{
-		QMessageBox::information(this, "提示", "连接成功");
-		ui.pushButton_connect->hide();//连接成功，按钮就显示成断开(隐藏连接按钮)
-		//ui.pushButton_dis->
+		QMessageBox::information(this, "提示", "成功和服务器连接");
+		ui.pushButton_connect->hide();//连接成功，按钮就显示成功断开(隐藏连接按钮)
 		ui.pushButton_send->setEnabled(true);//发送按钮功能启用
 	}
+}
+
+MainWindow::~MainWindow()
+{
+	delete client;
+	client = NULL;
 }
 
 void MainWindow::Close()
@@ -58,7 +68,7 @@ void MainWindow::ReadData()
 	QByteArray buffer = client->readAll();
 	if (!buffer.isEmpty())
 	{
-		ui.textEdit_com->setText(buffer);
+		ui.textEdit_com->append(buffer);
 	}
 }
 
@@ -69,7 +79,9 @@ void MainWindow::SendMessage()
 	if (!data.isEmpty())
 	{
 		//向服务器发送数据
-		ui.textEdit_com->setText(data);
+		ui.textEdit_com->append(data);//采用文本追加的方式
 		client->write(data.toUtf8());
 	}
 }
+
+

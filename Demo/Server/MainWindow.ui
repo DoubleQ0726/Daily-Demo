@@ -35,6 +35,9 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="text">
+    <string>8888</string>
+   </property>
   </widget>
   <widget class="QGroupBox" name="groupBox_3">
    <property name="geometry">
@@ -154,19 +157,6 @@
     <string>本机端口号</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_connect">
-   <property name="geometry">
-    <rect>
-     <x>530</x>
-     <y>170</y>
-     <width>115</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>连接</string>
-   </property>
-  </widget>
   <zorder>groupBox_3</zorder>
   <zorder>groupBox</zorder>
   <zorder>pushButton_send</zorder>
@@ -178,7 +168,6 @@
   <zorder>textEdit_com</zorder>
   <zorder>label</zorder>
   <zorder>label_2</zorder>
-  <zorder>pushButton_connect</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
