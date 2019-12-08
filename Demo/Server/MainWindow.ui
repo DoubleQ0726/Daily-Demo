@@ -105,7 +105,7 @@
     </rect>
    </property>
    <property name="title">
-    <string>接受窗口</string>
+    <string>接收窗口</string>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
